@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="ru.mapublish.multiplicationtable.screens.GameViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_bluish"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="10"
+            tools:context=".screens.GameFragment">
+
+
+        <GridLayout
+                android:id="@+id/table"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:columnCount="10"
+                android:paddingTop="52dp"
+                android:rowCount="10">
+
+
+            <TextView
+                    android:id="@+id/zero"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="0"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:id="@+id/cOne"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="1"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:id="@+id/cTwo"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="2"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:id="@+id/cThree"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="3"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/cFour"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="4"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/cFive"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="5"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/cSix"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="6"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/cSeven"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="7"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/cEight"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="8"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/cNine"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="9"
+                    android:textColor="@color/semi_white" />
+
+            <!-- ROW I -->
+
+            <TextView
+                    android:id="@+id/rOne"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="1"
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:id="@+id/rI_1"
+                    style="@style/boxTheme"
+                    tools:text="1" />
+
+            <TextView
+                    android:id="@+id/rI_2"
+                    style="@style/boxTheme"
+                    tools:text="2" />
+
+            <TextView
+                    android:id="@+id/rI_3"
+                    style="@style/boxTheme"
+                    tools:text="3" />
+
+            <TextView
+                    android:id="@+id/rI_4"
+                    style="@style/boxTheme"
+                    tools:text="4" />
+
+            <TextView
+                    android:id="@+id/rI_5"
+                    style="@style/boxTheme"
+                    tools:text="5" />
+
+            <TextView
+                    android:id="@+id/rI_6"
+                    style="@style/boxTheme"
+                    tools:text="6" />
+
+            <TextView
+                    android:id="@+id/rI_7"
+                    style="@style/boxTheme"
+                    tools:text="7" />
+
+            <TextView
+                    android:id="@+id/rI_8"
+                    style="@style/boxTheme"
+                    tools:text="8" />
+
+            <TextView
+                    android:id="@+id/rI_9"
+                    style="@style/boxTheme"
+                    tools:text="9" />
+
+
+            <!-- ROW II -->
+
+            <TextView
+                    android:id="@+id/rTwo"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="2"
+
+                    android:textColor="@color/white" />
+
+            <TextView
+                    android:id="@+id/rII_2"
+                    style="@style/boxTheme"
+                    tools:text="2" />
+
+            <TextView
+                    android:id="@+id/rII_4"
+                    style="@style/boxTheme"
+                    tools:text="4" />
+
+            <TextView
+                    android:id="@+id/rII_6"
+                    style="@style/boxTheme"
+                    tools:text="6" />
+
+            <TextView
+                    android:id="@+id/rII_8"
+                    style="@style/boxTheme"
+                    tools:text="8" />
+
+            <TextView
+                    android:id="@+id/rII_10"
+                    style="@style/boxTheme"
+                    tools:text="10" />
+
+            <TextView
+                    android:id="@+id/rII_12"
+                    style="@style/boxTheme"
+                    tools:text="12" />
+
+            <TextView
+                    android:id="@+id/rII_14"
+                    style="@style/boxTheme"
+                    tools:text="14" />
+
+            <TextView
+                    android:id="@+id/rII_16"
+                    style="@style/boxTheme"
+                    tools:text="16" />
+
+            <TextView
+                    android:id="@+id/rII_18"
+                    style="@style/boxTheme"
+                    tools:text="18" />
+
+            <!-- ROW III -->
+
+            <TextView
+                    android:id="@+id/rThree"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+
+                    android:text="3"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/rIII_3"
+                    style="@style/boxTheme"
+                    tools:text="3" />
+
+            <TextView
+                    android:id="@+id/rIII_6"
+                    style="@style/boxTheme"
+                    tools:text="6" />
+
+            <TextView
+                    android:id="@+id/rIII_9"
+                    style="@style/boxTheme"
+                    tools:text="9" />
+
+            <TextView
+                    android:id="@+id/rIII_12"
+                    style="@style/boxTheme"
+                    tools:text="12" />
+
+            <TextView
+                    android:id="@+id/rIII_15"
+                    style="@style/boxTheme"
+                    tools:text="15" />
+
+            <TextView
+                    android:id="@+id/rIII_18"
+                    style="@style/boxTheme"
+                    tools:text="18" />
+
+            <TextView
+                    android:id="@+id/rIII_21"
+                    style="@style/boxTheme"
+                    tools:text="21" />
+
+            <TextView
+                    android:id="@+id/rIII_24"
+                    style="@style/boxTheme"
+                    tools:text="27" />
+
+            <TextView
+                    android:id="@+id/rIII_27"
+                    style="@style/boxTheme"
+                    tools:text="27" />
+
+            <!-- ROW IV -->
+
+            <TextView
+                    android:id="@+id/rFour"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+
+                    android:text="4"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/rIV_4"
+                    style="@style/boxTheme"
+                    tools:text="4" />
+
+            <TextView
+                    android:id="@+id/rIV_8"
+                    style="@style/boxTheme"
+                    tools:text="8" />
+
+            <TextView
+                    android:id="@+id/rIV_12"
+                    style="@style/boxTheme"
+                    tools:text="12" />
+
+            <TextView
+                    android:id="@+id/rIV_16"
+                    style="@style/boxTheme"
+                    tools:text="16" />
+
+            <TextView
+                    android:id="@+id/rIV_20"
+                    style="@style/boxTheme"
+                    tools:text="20" />
+
+            <TextView
+                    android:id="@+id/rIV_24"
+                    style="@style/boxTheme"
+                    tools:text="24" />
+
+            <TextView
+                    android:id="@+id/rIV_28"
+                    style="@style/boxTheme"
+                    tools:text="28" />
+
+            <TextView
+                    android:id="@+id/rIV_32"
+                    style="@style/boxTheme"
+                    tools:text="32" />
+
+            <TextView
+                    android:id="@+id/rIV_36"
+                    style="@style/boxTheme"
+                    tools:text="36" />
+
+            <!-- ROW V -->
+
+            <TextView
+                    android:id="@+id/rFive"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+
+                    android:text="5"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/rV_5"
+                    style="@style/boxTheme"
+                    tools:text="5" />
+
+            <TextView
+                    android:id="@+id/rV_10"
+                    style="@style/boxTheme"
+                    tools:text="10" />
+
+            <TextView
+                    android:id="@+id/rV_15"
+                    style="@style/boxTheme"
+                    tools:text="15" />
+
+            <TextView
+                    android:id="@+id/rV_20"
+                    style="@style/boxTheme"
+                    tools:text="20" />
+
+            <TextView
+                    android:id="@+id/rV_25"
+                    style="@style/boxTheme"
+                    tools:text="25" />
+
+            <TextView
+                    android:id="@+id/rV_30"
+                    style="@style/boxTheme"
+                    tools:text="30" />
+
+            <TextView
+                    android:id="@+id/rV_35"
+                    style="@style/boxTheme"
+                    tools:text="35" />
+
+            <TextView
+                    android:id="@+id/rV_40"
+                    style="@style/boxTheme"
+                    tools:text="40" />
+
+            <TextView
+                    android:id="@+id/rV_45"
+                    style="@style/boxTheme"
+                    tools:text="45" />
+
+            <!-- ROW VI -->
+
+            <TextView
+                    android:id="@+id/rSix"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+
+                    android:text="6"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/rVI_6"
+                    style="@style/boxTheme"
+                    tools:text="6" />
+
+            <TextView
+                    android:id="@+id/rVI_12"
+                    style="@style/boxTheme"
+                    tools:text="12" />
+
+            <TextView
+                    android:id="@+id/rVI_18"
+                    style="@style/boxTheme"
+                    tools:text="18" />
+
+            <TextView
+                    android:id="@+id/rVI_24"
+                    style="@style/boxTheme"
+                    tools:text="24" />
+
+            <TextView
+                    android:id="@+id/rVI_30"
+                    style="@style/boxTheme"
+                    tools:text="30" />
+
+            <TextView
+                    android:id="@+id/rVI_36"
+                    style="@style/boxTheme"
+                    tools:text="36" />
+
+            <TextView
+                    android:id="@+id/rVI_42"
+                    style="@style/boxTheme"
+                    tools:text="42" />
+
+            <TextView
+                    android:id="@+id/rVI_48"
+                    style="@style/boxTheme"
+                    tools:text="48" />
+
+            <TextView
+                    android:id="@+id/rVI_54"
+                    style="@style/boxTheme"
+                    tools:text="54" />
+
+            <!-- ROW VII -->
+
+            <TextView
+                    android:id="@+id/rSeven"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="7"
+
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/rVII_7"
+                    style="@style/boxTheme"
+                    tools:text="7" />
+
+            <TextView
+                    android:id="@+id/rVII_14"
+                    style="@style/boxTheme"
+                    tools:text="14" />
+
+            <TextView
+                    android:id="@+id/rVII_21"
+                    style="@style/boxTheme"
+                    tools:text="21" />
+
+            <TextView
+                    android:id="@+id/rVII_28"
+                    style="@style/boxTheme"
+                    tools:text="28" />
+
+            <TextView
+                    android:id="@+id/rVII_35"
+                    style="@style/boxTheme"
+                    tools:text="35" />
+
+            <TextView
+                    android:id="@+id/rVII_42"
+                    style="@style/boxTheme"
+                    tools:text="42" />
+
+            <TextView
+                    android:id="@+id/rVII_49"
+                    style="@style/boxTheme"
+                    tools:text="49" />
+
+            <TextView
+                    android:id="@+id/rVII_56"
+                    style="@style/boxTheme"
+                    tools:text="56" />
+
+            <TextView
+                    android:id="@+id/rVII_63"
+                    style="@style/boxTheme"
+                    tools:text="63" />
+
+            <!-- ROW VIII -->
+
+            <TextView
+                    android:id="@+id/rEight"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="8"
+
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/rVIII_8"
+                    style="@style/boxTheme"
+                    tools:text="8" />
+
+            <TextView
+                    android:id="@+id/rVIII_16"
+                    style="@style/boxTheme"
+                    tools:text="16" />
+
+            <TextView
+                    android:id="@+id/rVIII_24"
+                    style="@style/boxTheme"
+                    tools:text="24" />
+
+            <TextView
+                    android:id="@+id/rVIII_32"
+                    style="@style/boxTheme"
+                    tools:text="32" />
+
+            <TextView
+                    android:id="@+id/rVIII_40"
+                    style="@style/boxTheme"
+                    tools:text="40" />
+
+            <TextView
+                    android:id="@+id/rVIII_48"
+                    style="@style/boxTheme"
+                    tools:text="48" />
+
+            <TextView
+                    android:id="@+id/rVIII_56"
+                    style="@style/boxTheme"
+                    tools:text="56" />
+
+            <TextView
+                    android:id="@+id/rVIII_64"
+                    style="@style/boxTheme"
+                    tools:text="64" />
+
+            <TextView
+                    android:id="@+id/rVIII_72"
+                    style="@style/boxTheme"
+                    tools:text="72" />
+
+            <!-- ROW IX -->
+
+            <TextView
+                    android:id="@+id/rNine"
+                    style="@style/boxTheme"
+                    android:background="@color/background_bluish"
+                    android:text="9"
+                    android:textColor="@color/semi_white" />
+
+            <TextView
+                    android:id="@+id/rIX_9"
+                    style="@style/boxTheme"
+                    tools:text="9" />
+
+            <TextView
+                    android:id="@+id/rIX_18"
+                    style="@style/boxTheme"
+                    tools:text="18" />
+
+            <TextView
+                    android:id="@+id/rIX_27"
+                    style="@style/boxTheme"
+                    tools:text="27" />
+
+            <TextView
+                    android:id="@+id/rIX_36"
+                    style="@style/boxTheme"
+                    tools:text="36" />
+
+            <TextView
+                    android:id="@+id/rIX_45"
+                    style="@style/boxTheme"
+                    tools:text="45" />
+
+            <TextView
+                    android:id="@+id/rIX_54"
+                    style="@style/boxTheme"
+                    tools:text="54" />
+
+            <TextView
+                    android:id="@+id/rIX_63"
+                    style="@style/boxTheme"
+                    tools:text="63" />
+
+            <TextView
+                    android:id="@+id/rIX_72"
+                    style="@style/boxTheme"
+                    tools:text="72" />
+
+            <TextView
+                    android:id="@+id/rIX_81"
+                    style="@style/boxTheme"
+                    android:fontFamily="@font/roboto"
+                    tools:text="81" />
+
+        </GridLayout>
+
+
+        <LinearLayout
+                android:id="@+id/standard_mode_controllers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="16dp">
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:gravity="start"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:id="@+id/cheat_btn"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="16dp"
+                            android:onClick="@{()->viewModel.onCheatBtn()}"
+                            app:srcCompat="@drawable/cheat_btn_0" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                    <ru.mapublish.multiplicationtable.views.TimerView
+                            android:id="@+id/timerView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
+
+                    <EditText
+                            android:id="@+id/et"
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="16dp"
+                            android:background="@drawable/et_round_corners"
+                            android:focusable="false"
+                            android:text="@={viewModel.textObservable}" />
+
+
+                    <ImageView
+                            android:id="@+id/sendAnswer"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:onClick="@{()->viewModel.validateAnswer('S')}"
+                            app:srcCompat="@drawable/send_answer_selector" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include
+                    android:id="@+id/keyboard"
+                    layout="@layout/keyboard_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="64dp"
+                    android:gravity="center"
+                    app:keyListener="@{viewModel.onKeyClick}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/trueFalse_mode_controllers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+            <TextView
+                    android:id="@+id/false_btn"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/truefalse_controllers"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:onClick="@{()->viewModel.validateAnswer('F')}"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:text="FALSE"
+                    android:textColor="@color/background_bluish"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+            <ru.mapublish.multiplicationtable.views.TimerView
+                    android:id="@+id/timerView_trueFalse_mode"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp" />
+
+            <TextView
+                    android:id="@+id/true_btn"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/truefalse_controllers"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:onClick="@{()->viewModel.validateAnswer('T')}"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:text="TRUE"
+                    android:textColor="@color/background_bluish"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

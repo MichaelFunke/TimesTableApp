@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="ru.mapublish.multiplicationtable.utils.Actions"/>
+
+        <variable
+                name="keyListener"
+                type="ru.mapublish.multiplicationtable.utils.OnKeyClick"/>
+    </data>
+
+    <LinearLayout
+            android:id="@+id/linearLayout"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/input_1"
+                android:onClick="@{(v)->keyListener.onKeyClick('1')}"
+                style="@style/keyboardTheme"
+                android:text="1"/>
+
+        <TextView
+                android:id="@+id/input_2"
+                android:onClick="@{(v)->keyListener.onKeyClick('2')}"
+                style="@style/keyboardTheme"
+                android:text="2"/>
+
+        <TextView
+                android:id="@+id/input_3"
+                android:onClick="@{(v)->keyListener.onKeyClick('3')}"
+                style="@style/keyboardTheme"
+                android:text="3"/>
+
+        <TextView
+                android:id="@+id/input_4"
+                android:onClick="@{(v)->keyListener.onKeyClick('4')}"
+                style="@style/keyboardTheme"
+                android:text="4"/>
+
+        <TextView
+                android:id="@+id/input_5"
+                android:onClick="@{(v)->keyListener.onKeyClick('5')}"
+                style="@style/keyboardTheme"
+                android:text="5"
+                app:fontFamily="@font/roboto"/>
+
+        <TextView
+                android:id="@+id/input_6"
+                android:onClick="@{(v)->keyListener.onKeyClick('6')}"
+                style="@style/keyboardTheme"
+                android:text="6"/>
+
+        <TextView
+                android:id="@+id/input_7"
+                android:onClick="@{(v)->keyListener.onKeyClick('7')}"
+                style="@style/keyboardTheme"
+                android:text="7"/>
+
+        <TextView
+                android:id="@+id/input_8"
+                android:onClick="@{(v)->keyListener.onKeyClick('8')}"
+                style="@style/keyboardTheme"
+                android:text="8"/>
+
+
+        <TextView
+                android:id="@+id/input_9"
+                android:onClick="@{(v)->keyListener.onKeyClick('9')}"
+                style="@style/keyboardTheme"
+                android:text="9"/>
+
+
+        <TextView
+                android:id="@+id/input_0"
+                android:onClick="@{(v)->keyListener.onKeyClick('0')}"
+                style="@style/keyboardTheme"
+                android:text="0"/>
+
+
+        <ImageView
+                android:id="@+id/delete"
+                android:onClick="@{(v)->keyListener.onKeyClick(Actions.ERASE_TEXT)}"
+                style="@style/keyboardTheme"
+                android:padding="2dp"
+                app:srcCompat="@drawable/delete"
+                android:contentDescription="@string/delete_img"/>
+
+    </LinearLayout>
+</layout>

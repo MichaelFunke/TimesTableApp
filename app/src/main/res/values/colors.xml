@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">@android:color/white</color>
+    <color name="semi_white">#9BFFFAFA</color>
+    <color name="semi_black">#1F000000</color>
+    <color name="background_bluish">#65A3AE</color>
+    <color name="background_semi_bluish">#9065A3AE</color>
+    <color name="yellow">#ffd207</color>
+    <color name="yellow_light">#FFFAD7</color>
+    <color name="red">#ff7f80</color>
+    <color name="dark_blue">#558595</color>
+    <color name="key_pressed">#9BFFFAFA</color>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/tv_to_round_mode_semi_black" android:state_selected="true" />
+    <item android:drawable="@drawable/tv_to_round_level_selector_blue" android:state_enabled="true"/>
+
+</selector>

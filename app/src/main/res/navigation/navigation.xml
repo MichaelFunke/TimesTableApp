@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/navigation"
+        app:startDestination="@id/startFragment">
+
+    <fragment
+            android:id="@+id/gameFragment"
+            android:name="ru.mapublish.multiplicationtable.screens.GameFragment"
+            android:label="GameFragment">
+        <action
+                android:id="@+id/action_gameFragment_to_goNextLevelFragment"
+                app:destination="@id/goNextLevelFragment"
+                app:popUpTo="@+id/startFragment"
+                app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+            android:id="@+id/goNextLevelFragment"
+            android:name="ru.mapublish.multiplicationtable.screens.GoNextLevelFragment"
+            android:label="GoNextLevelFragment">
+        <argument
+                android:name="incorrectAnswers"
+                app:argType="integer" />
+        <action
+                android:id="@+id/action_goNextLevelFragment_to_gameFragment"
+                app:destination="@+id/presenterFragment"
+                app:popUpTo="@+id/startFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/startFragment"
+            android:name="ru.mapublish.multiplicationtable.screens.StartFragment"
+            android:label="StartFragment">
+        <action
+                android:id="@+id/action_startFragment_to_presenterFragment"
+                app:destination="@id/presenterFragment"
+                app:popUpTo="@+id/startFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/presenterFragment"
+            android:name="ru.mapublish.multiplicationtable.screens.PresenterFragment"
+            android:label="PresenterFragment" >
+        <action
+                android:id="@+id/action_presenterFragment_to_gameFragment"
+                app:destination="@id/gameFragment"
+                app:popUpTo="@+id/startFragment" />
+    </fragment>
+</navigation>
