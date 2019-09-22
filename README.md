@@ -1,2 +1,2 @@
 # TimesTableApp
-Simple App for learning the Pythagorean table.
+A simple app for learning the Pythagorean table.
