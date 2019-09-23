@@ -10,8 +10,11 @@ import ru.mapublish.multiplicationtable.R
 import ru.mapublish.multiplicationtable.utils.Actions
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_LEVEL
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_SPEED
+import ru.mapublish.multiplicationtable.utils.Actions.MODE
+import ru.mapublish.multiplicationtable.utils.Actions.STANDARD_MODE
 import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_LEVEL
 import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_SPEED
+import ru.mapublish.multiplicationtable.utils.Actions.TRUEFALSE_MODE
 import ru.mapublish.multiplicationtable.utils.readFromShPrefs
 import ru.mapublish.multiplicationtable.utils.writeToShPrefs
 
@@ -28,6 +31,9 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
     private val lvl7Btn: TextView
     private val lvl8Btn: TextView
 
+
+    private val levelSelectorParentView: LinearLayout
+
     private val modeStandardTv: TextView
     private val modeTrueFalseTv: TextView
 
@@ -35,8 +41,8 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
     private val speedX2Btn: TextView
     private val speedX4Btn: TextView
 
-    var currentLevel = readFromShPrefs(context, CURRENT_LEVEL)
     var currentSpeed = readFromShPrefs(context, CURRENT_SPEED)
+    var mode = readFromShPrefs(context, MODE)
 
     var totalLevel = readFromShPrefs(context, TOTAL_LEVEL)
     var totalSpeed = readFromShPrefs(context, TOTAL_SPEED)
@@ -44,6 +50,8 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
 
     init {
         inflate(context, R.layout.level_selector_view, this)
+
+        levelSelectorParentView = findViewById(R.id.levelSelectorParentView)
 
         lvl1Btn = findViewById(R.id.lvl1_btn)
         lvl2Btn = findViewById(R.id.lvl2_btn)
@@ -78,19 +86,6 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
             speedX4Btn
         )
 
-        //TODO delete!!!
-//       writeToShPrefs(context, CURRENT_LEVEL, 9)
-//       writeToShPrefs(context, CURRENT_SPEED, 2)
-
-        currentLevel = readFromShPrefs(context, CURRENT_LEVEL)
-        currentSpeed = readFromShPrefs(context, CURRENT_SPEED)
-
-        totalLevel = readFromShPrefs(context, TOTAL_LEVEL)
-        totalSpeed = readFromShPrefs(context, TOTAL_SPEED)
-
-        Log.i("levels", "currentLevel is $currentLevel, currentSpeed is $currentSpeed")
-        Log.i("levels", "totalLevel is $totalLevel, totalSpeed is $totalSpeed")
-
         enableLevelButtons(totalLevel, totalSpeed)
         manageLevelButtons(totalLevel)
 
@@ -98,25 +93,28 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
         manageSpeedButtons(totalSpeed)
 
 
-        //selects the last game mode
-        if (readFromShPrefs(context, Actions.MODE) == Actions.TRUEFALSE_MODE) {
+//        selects the last game mode
+        if (mode == TRUEFALSE_MODE) {
             modeTrueFalseTv.isSelected = true
+
+            levelSelectorParentView.background = resources.getDrawable(R.color.purpur)
         } else {
             modeStandardTv.isSelected = true
         }
 
 
         //when pressed game starts in standard mode
-        modeStandardTv.setOnClickListener {
-            writeToShPrefs(context, Actions.MODE, Actions.STANDARD_MODE)
-            changeModeButtonsColors(it)
-        }
+//        modeStandardTv.setOnClickListener {
+//
+//            writeToShPrefs(context, MODE, STANDARD_MODE)
+//            changeModeButtonsColors(it)
+//        }
 
         //when pressed  game starts in true/false mode
-        modeTrueFalseTv.setOnClickListener {
-            writeToShPrefs(context, Actions.MODE, Actions.TRUEFALSE_MODE)
-            changeModeButtonsColors(it)
-        }
+//        modeTrueFalseTv.setOnClickListener {
+//            writeToShPrefs(context, MODE, TRUEFALSE_MODE)
+//            changeModeButtonsColors(it)
+//        }
 
 
         lvl1Btn.setOnClickListener {
@@ -213,7 +211,7 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
         }
     }
 
-    private fun changeModeButtonsColors(view: View) {
+    fun changeModeButtonsColors(view: View) {
         when (view.id) {
             R.id.standard_mode_tv -> {
                 modeStandardTv.isSelected = true
@@ -228,8 +226,6 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
     }
 
     private fun enableLevelButtons(level: Int, speed: Int) {
-        Log.i("levels", "enableLevelButtons currentLevel is $level, currentSpeed is $speed")
-
 
         levelButtons.forEach { it.isEnabled = false }
         when (speed) {
@@ -385,7 +381,6 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
     }
 
     private fun enableSpeedButtons(speed: Int) {
-
         speedButtons.forEach { it.isEnabled = false }
         when (speed) {
             1 -> {
@@ -404,9 +399,6 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
     }
 
     private fun manageLevelButtons(level: Int) {
-        Log.i("levels", "manageLevelButtons currentLevel is $level, totalLevel is $totalLevel, totalSpeed is $totalSpeed")
-
-
         writeToShPrefs(context, CURRENT_LEVEL, level)
 
         levelButtons.forEach { it.isSelected = false }
@@ -423,12 +415,6 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
     }
 
     private fun manageSpeedButtons(speed: Int) {
-        Log.i(
-            "levels",
-            "manageSpeedButtons currentSpeed is $speed, totalLevel is $totalLevel, totalSpeed is $totalSpeed"
-        )
-
-
         writeToShPrefs(context, CURRENT_SPEED, speed)
 
         speedButtons.forEach { it.isSelected = false }

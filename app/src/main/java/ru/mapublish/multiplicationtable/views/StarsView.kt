@@ -19,8 +19,8 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
     private var fifthStar: ImageView
 
     companion object {
-        const val ANIM_DURATION = 150L
-        const val TOP_SCALE = 2f
+        const val ANIM_DURATION = 120L
+        const val TOP_SCALE = 1.8f
         const val START_SCALE = 0f
         const val END_SCALE = 1f
     }
@@ -55,7 +55,6 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
      */
 
     fun launchStarsAnimation(percentage: Float) {
-        Log.i("mytag", "percentage is $percentage")
         when {
             percentage >= 90 -> {
                 firstStar.setImageResource(R.drawable.star_happy)
@@ -107,8 +106,8 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
             PropertyValuesHolder.ofFloat("scaleY", START_SCALE, TOP_SCALE, END_SCALE),
             PropertyValuesHolder.ofFloat("alpha", START_SCALE, END_SCALE)
         )
-        animator1.duration = ANIM_DURATION
-        animator1.interpolator = AccelerateInterpolator()
+//        animator1.duration = ANIM_DURATION
+//        animator1.interpolator = AccelerateInterpolator()
 
         val animator2: ObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
             secondStar,
@@ -116,8 +115,8 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
             PropertyValuesHolder.ofFloat("scaleY", START_SCALE, TOP_SCALE, END_SCALE),
             PropertyValuesHolder.ofFloat("alpha", START_SCALE, END_SCALE)
         )
-        animator2.duration = ANIM_DURATION
-        animator2.interpolator = AccelerateInterpolator()
+//        animator2.duration = ANIM_DURATION
+//        animator2.interpolator = AccelerateInterpolator()
 
 
         val animator3: ObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
@@ -126,8 +125,8 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
             PropertyValuesHolder.ofFloat("scaleY", START_SCALE, TOP_SCALE, END_SCALE),
             PropertyValuesHolder.ofFloat("alpha", START_SCALE, END_SCALE)
         )
-        animator3.duration = ANIM_DURATION
-        animator3.interpolator = AccelerateInterpolator()
+//        animator3.duration = ANIM_DURATION
+//        animator3.interpolator = AccelerateInterpolator()
 
 
         val animator4: ObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
@@ -136,8 +135,8 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
             PropertyValuesHolder.ofFloat("scaleY", START_SCALE, TOP_SCALE, END_SCALE),
             PropertyValuesHolder.ofFloat("alpha", START_SCALE, END_SCALE)
         )
-        animator4.duration = ANIM_DURATION
-        animator4.interpolator = AccelerateInterpolator()
+//        animator4.duration = ANIM_DURATION
+//        animator4.interpolator = AccelerateInterpolator()
 
 
         val animator5: ObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
@@ -146,11 +145,13 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
             PropertyValuesHolder.ofFloat("scaleY", START_SCALE, TOP_SCALE, END_SCALE),
             PropertyValuesHolder.ofFloat("alpha", START_SCALE, END_SCALE)
         )
-        animator5.duration = ANIM_DURATION
-        animator5.interpolator = AccelerateInterpolator()
+//        animator5.duration = ANIM_DURATION
+//        animator5.interpolator = AccelerateInterpolator()
 
 
         val animatorSet = AnimatorSet()
+        animatorSet.interpolator = AccelerateInterpolator()
+        animatorSet.duration = ANIM_DURATION
         animatorSet.play(animator2).after(animator1)
         animatorSet.play(animator3).after(animator2)
         animatorSet.play(animator4).after(animator3)

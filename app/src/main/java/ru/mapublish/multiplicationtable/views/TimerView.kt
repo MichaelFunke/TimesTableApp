@@ -10,12 +10,23 @@ import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import ru.mapublish.multiplicationtable.R
+import ru.mapublish.multiplicationtable.utils.Actions.MODE
+import ru.mapublish.multiplicationtable.utils.Actions.TRUEFALSE_MODE
+import ru.mapublish.multiplicationtable.utils.readFromShPrefs
 
 class TimerView(context: Context, attrs: AttributeSet?) : View(context, attrs, 0) {
 
+    private val mode = readFromShPrefs(context, MODE)
 
     private val paintSemiWhite = Paint().apply {
         color = ContextCompat.getColor(context, R.color.semi_white)
+    }
+
+    private val paintPurPur = Paint().apply {
+        color = ContextCompat.getColor(
+            context,
+            R.color.purpur
+        )
     }
 
     private val paintBlue = Paint().apply {
@@ -26,6 +37,7 @@ class TimerView(context: Context, attrs: AttributeSet?) : View(context, attrs, 0
     }
 
     init {
+        paintPurPur.isAntiAlias = true
         paintBlue.isAntiAlias = true
         paintSemiWhite.isAntiAlias = true
     }
@@ -46,7 +58,7 @@ class TimerView(context: Context, attrs: AttributeSet?) : View(context, attrs, 0
             width.toFloat() / 2 - 4,
             paintSemiWhite
         )
-        canvas?.drawArc(oval, -90F, sweepAngle, true, paintBlue)
+        canvas?.drawArc(oval, -90F, sweepAngle, true, if (mode == TRUEFALSE_MODE) paintPurPur else paintBlue )
     }
 
     fun start(dur: Long) {

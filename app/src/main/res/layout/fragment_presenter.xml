@@ -7,6 +7,7 @@
 
     <LinearLayout
             android:layout_width="match_parent"
+            android:id="@+id/presenterParentView"
             android:layout_height="match_parent"
             android:background="@color/background_bluish"
             android:gravity="center"
@@ -649,6 +650,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="2dp"
+                        android:background="@android:color/transparent"
                         android:text="Skip"
                         android:textColor="@color/semi_white"
                         android:textSize="16dp" />

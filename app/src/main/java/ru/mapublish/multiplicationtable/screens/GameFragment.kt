@@ -24,6 +24,7 @@ import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_SPEED
 import ru.mapublish.multiplicationtable.utils.Actions.MODE
 import ru.mapublish.multiplicationtable.utils.Actions.STANDARD_MODE
 import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_SPEED
+import ru.mapublish.multiplicationtable.utils.Actions.TRUEFALSE_MODE
 
 /**
  * Fragment where the game is played
@@ -128,11 +129,29 @@ class GameFragment : Fragment() {
         viewModel.resetList(level)
 
         initArrays()
+
+        if (mode == TRUEFALSE_MODE) {
+            binding.trueBtn.setTextColor(resources.getColor(R.color.purpur))
+            binding.falseBtn.setTextColor(resources.getColor(R.color.purpur))
+
+            binding.gameParentView.background = colorTablePurPur()
+            productTvs.forEach {
+                it.background = colorTablePurPur()
+                it.setTextColor(colorTextTablePurPur())
+            }
+            factorTvs.forEach {
+                it.background = colorTablePurPur()
+                it.setTextColor(colorTextTablePurPur())
+            }
+        }
+
         adjustTableSizeToScreenSize()
         fillArraysToLevel()
 
+
         getTvsIds()
         colorPerfectSquares()
+
 
         // starts the timer animation
         startTimer()
@@ -204,14 +223,14 @@ class GameFragment : Fragment() {
             it.layoutParams.width = width / 11
             it.layoutParams.height = width / 11
             //changes the text size to fit the TextView
-            it.textSize = it.layoutParams.width.toFloat() / 3
+//            it.textSize = it.layoutParams.width.toFloat() / 3.5.toFloat()
         }
 
         factorTvs.forEach {
             it.layoutParams.width = width / 11
             it.layoutParams.height = width / 11
             //changes the text size to fit the TextView
-            it.textSize = it.layoutParams.width.toFloat() / 3
+//            it.textSize = it.layoutParams.width.toFloat() / 3.5.toFloat()
         }
 
         keyboardButtons.forEach {
@@ -238,6 +257,8 @@ class GameFragment : Fragment() {
         //adjusting the size of the timerView for TrueFalse mode btn
         binding.timerViewTrueFalseMode.layoutParams.width = width / 9
         binding.timerViewTrueFalseMode.layoutParams.height = width / 9
+
+
     }
 
     /**
@@ -536,15 +557,27 @@ class GameFragment : Fragment() {
             for (element in tvIds) {
                 if (item.toString().contains(element, true)) {
                     item.background = colorBackgroundWhite()
-                    item.setTextColor(colorTextBlue())
+
+                    if (mode == TRUEFALSE_MODE) {
+                        item.setTextColor(colorTextTablePurPur())
+                    } else {
+                        item.setTextColor(colorTextBlue())
+                    }
                 }
             }
         }
 
         //iterates through the list of all factor tvs and changes their colors
-        factorTvs.forEach {
-            it.background = colorBackgroundBlue()
-            it.setTextColor(colorTextWhite())
+        if (mode == TRUEFALSE_MODE) {
+            factorTvs.forEach {
+                it.background = colorTablePurPur()
+                it.setTextColor(colorTextWhite())
+            }
+        } else {
+            factorTvs.forEach {
+                it.background = colorBackgroundBlue()
+                it.setTextColor(colorTextWhite())
+            }
         }
     }
 
@@ -663,7 +696,11 @@ class GameFragment : Fragment() {
             for (element in factorTvs) {
                 if (element.toString().contains(item, true)) {
                     element.background = colorBackgroundYellowLight()
-                    element.setTextColor(colorTextBlue())
+                    if (mode == TRUEFALSE_MODE) {
+                        element.setTextColor(colorTextTablePurPur())
+                    } else {
+                        element.setTextColor(colorTextBlue())
+                    }
                 }
             }
         }
@@ -715,6 +752,20 @@ class GameFragment : Fragment() {
         ContextCompat.getDrawable(
             requireContext(),
             R.drawable.tv_rounded_corners_yellow
+        )
+    }
+
+    private val colorTablePurPur = {
+        ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.tv_rounded_corners_purpur
+        )
+    }
+
+    private val colorTextTablePurPur = {
+        ContextCompat.getColor(
+            requireContext(),
+            R.color.purpur
         )
     }
 }

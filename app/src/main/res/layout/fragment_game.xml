@@ -16,6 +16,7 @@
             android:layout_height="match_parent"
             android:background="@color/background_bluish"
             android:gravity="center"
+            android:id="@+id/gameParentView"
             android:orientation="vertical"
             android:weightSum="10"
             tools:context=".screens.GameFragment">
@@ -701,7 +702,7 @@
                     android:paddingBottom="6dp"
                     android:text="FALSE"
                     android:textColor="@color/background_bluish"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/trueFalse"
                     android:textStyle="bold" />
 
 
@@ -726,7 +727,7 @@
                     android:paddingBottom="6dp"
                     android:text="TRUE"
                     android:textColor="@color/background_bluish"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/trueFalse"
                     android:textStyle="bold" />
         </LinearLayout>
 

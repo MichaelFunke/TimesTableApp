@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Multiplication Table</string>
+    <string name="app_name">Times Table</string>
     <string name="want_to_quit">Quit the game?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>

@@ -1,12 +1,9 @@
 package ru.mapublish.multiplicationtable.screens
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -15,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import ru.mapublish.multiplicationtable.R
 import ru.mapublish.multiplicationtable.databinding.FragmentGoNextLevelBinding
+import ru.mapublish.multiplicationtable.utils.Actions
 import ru.mapublish.multiplicationtable.utils.Actions.GO_NEXT_LVL
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_LEVEL
 import ru.mapublish.multiplicationtable.utils.Actions.REPEAT_LVL
@@ -30,8 +28,11 @@ class GoNextLevelFragment : DialogFragment() {
     private lateinit var binding: FragmentGoNextLevelBinding
     private lateinit var goNextViewModel: GoNextLevelViewModel
 
-    private var currentLevel = 0
-    private var totalLevel = 0
+    private var currentLevel = 1
+    private var totalLevel = 1
+    private var currentSpeed = 1
+    private var mode = 1
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(
@@ -41,26 +42,32 @@ class GoNextLevelFragment : DialogFragment() {
             false
         )
 
+        currentLevel = readFromShPrefs(requireContext(), CURRENT_LEVEL)
+        totalLevel = readFromShPrefs(requireContext(), TOTAL_LEVEL)
+        currentSpeed = readFromShPrefs(requireContext(), CURRENT_SPEED)
+        mode = readFromShPrefs(requireContext(), Actions.MODE)
+
         goNextViewModel = ViewModelProviders.of(this).get(GoNextLevelViewModel::class.java)
         binding.goNextViewModel = goNextViewModel
         binding.lifecycleOwner = this
 
         val args = GoNextLevelFragmentArgs.fromBundle(arguments!!)
-
-        currentLevel = readFromShPrefs(requireContext(), CURRENT_LEVEL)
-        totalLevel = readFromShPrefs(requireContext(), TOTAL_LEVEL)
-
-        val currentSpeed = readFromShPrefs(requireContext(), CURRENT_SPEED)
         val percentageOfIncorrectAnswers = makePercentage(currentLevel, args.incorrectAnswers)
 
+
+        if (mode == Actions.TRUEFALSE_MODE) binding.ll.setBackgroundColor(resources.getColor(R.color.purpur))
+
+
         //if the level is 8 and speed is x1, the speed gets the value of x2 for the next 8 levels
-        if (currentLevel == 8 && currentSpeed == 1) writeToShPrefs(requireContext(), TOTAL_SPEED, 2)
+        if (currentLevel == 8 && currentSpeed == 1) {
+            writeToShPrefs(requireContext(), TOTAL_SPEED, 2)
+            binding.ivNextRound.setImageResource(R.drawable.icon_2x_speed)
+        }
         //if the level is 8 and speed is x2, the speed gets the value of x4 for the next 8 levels
-        else if (currentLevel == 8 && currentSpeed == 2) writeToShPrefs(
-            requireContext(),
-            TOTAL_SPEED,
-            4
-        )
+        else if (currentLevel == 8 && currentSpeed == 2) {
+            writeToShPrefs(requireContext(), TOTAL_SPEED, 4)
+            binding.ivNextRound.setImageResource(R.drawable.icon_2x_speed)
+        }
 
 
         val handler = Handler()
@@ -68,14 +75,16 @@ class GoNextLevelFragment : DialogFragment() {
             binding.starsView.launchStarsAnimation(percentageOfIncorrectAnswers)
         }, 150)
 
-        //if percentageOfIncorrectAnswers is to high the player can not go to the next level and should repeat the last level again
+        //if percentageOfIncorrectAnswers is too high the player cannot go to the next level and should repeat the level again
         if (percentageOfIncorrectAnswers <= 55) {
-
             //manage UI
             binding.ivNextRound.isEnabled = false
             binding.reviewTv.text = getString(R.string.get4stars)
             binding.nextRoundTv.setTextColor(resources.getColor(R.color.semi_white))
         } else {
+            binding.ivPlayAgain.isEnabled = false
+            binding.repeatTv.setTextColor(resources.getColor(R.color.semi_white))
+
             //when the level is done successful the totalLevel increments by 1. If player repeats one of the levels he managed earlier only currentLevel increments.
             if (totalLevel > currentLevel) {
                 writeToShPrefs(requireContext(), CURRENT_LEVEL, currentLevel.plus(1))
