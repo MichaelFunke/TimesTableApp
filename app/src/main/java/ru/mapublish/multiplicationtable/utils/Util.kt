@@ -31,7 +31,7 @@ fun writeToShPrefs(context: Context, key: String, value: Int) {
 
 fun readFromShPrefs(context: Context, key: String): Int {
     val sharedPrefs = context.getSharedPreferences(Actions.PREFS, Context.MODE_PRIVATE)
-    return sharedPrefs.getInt(key, 1)
+    return sharedPrefs.getInt(key, -1)
 }
 
 
