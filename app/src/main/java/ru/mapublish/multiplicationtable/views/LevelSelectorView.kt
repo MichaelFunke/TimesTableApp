@@ -2,16 +2,13 @@ package ru.mapublish.multiplicationtable.views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import ru.mapublish.multiplicationtable.R
-import ru.mapublish.multiplicationtable.utils.Actions
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_LEVEL
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_SPEED
 import ru.mapublish.multiplicationtable.utils.Actions.MODE
-import ru.mapublish.multiplicationtable.utils.Actions.STANDARD_MODE
 import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_LEVEL
 import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_SPEED
 import ru.mapublish.multiplicationtable.utils.Actions.TRUEFALSE_MODE

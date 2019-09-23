@@ -61,12 +61,12 @@ class GoNextLevelFragment : DialogFragment() {
         //if the level is 8 and speed is x1, the speed gets the value of x2 for the next 8 levels
         if (currentLevel == 8 && currentSpeed == 1) {
             writeToShPrefs(requireContext(), TOTAL_SPEED, 2)
-            binding.ivNextRound.setImageResource(R.drawable.icon_2x_speed)
+            binding.ivNextRound.setImageResource(R.drawable.speed_2x_selector)
         }
         //if the level is 8 and speed is x2, the speed gets the value of x4 for the next 8 levels
         else if (currentLevel == 8 && currentSpeed == 2) {
             writeToShPrefs(requireContext(), TOTAL_SPEED, 4)
-            binding.ivNextRound.setImageResource(R.drawable.icon_2x_speed)
+            binding.ivNextRound.setImageResource(R.drawable.speed_4x_selector)
         }
 
 
