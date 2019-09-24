@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.animation.AccelerateInterpolator
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -19,8 +18,8 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
     private var fifthStar: ImageView
 
     companion object {
-        const val ANIM_DURATION = 120L
-        const val TOP_SCALE = 1.8f
+        const val ANIM_DURATION = 100L
+        const val TOP_SCALE = 1.6f
         const val START_SCALE = 0f
         const val END_SCALE = 1f
     }
@@ -54,37 +53,37 @@ class StarsView(context: Context, attrs: AttributeSet) : LinearLayout(context, a
      * stars appear consequently in a row after a lvl is done, showing the results of the player
      */
 
-    fun launchStarsAnimation(percentage: Float) {
+    fun launchStarsAnimation(percentageOfCorrectAnswers: Float) {
         when {
-            percentage >= 90 -> {
+            percentageOfCorrectAnswers >= 90 -> {
                 firstStar.setImageResource(R.drawable.star_happy)
                 secondStar.setImageResource(R.drawable.star_happy)
                 thirdStar.setImageResource(R.drawable.star_happy)
                 fourStar.setImageResource(R.drawable.star_happy)
                 fifthStar.setImageResource(R.drawable.star_happy)
             }
-            percentage >= 75 -> {
+            percentageOfCorrectAnswers >= 75 -> {
                 firstStar.setImageResource(R.drawable.star_happy)
                 secondStar.setImageResource(R.drawable.star_happy)
                 thirdStar.setImageResource(R.drawable.star_happy)
                 fourStar.setImageResource(R.drawable.star_happy)
                 fifthStar.setImageResource(R.drawable.star_sad)
             }
-            percentage >= 55 -> {
+            percentageOfCorrectAnswers >= 55 -> {
                 firstStar.setImageResource(R.drawable.star_happy)
                 secondStar.setImageResource(R.drawable.star_happy)
                 thirdStar.setImageResource(R.drawable.star_happy)
                 fourStar.setImageResource(R.drawable.star_sad)
                 fifthStar.setImageResource(R.drawable.star_sad)
             }
-            percentage >= 25 -> {
+            percentageOfCorrectAnswers >= 25 -> {
                 firstStar.setImageResource(R.drawable.star_happy)
                 secondStar.setImageResource(R.drawable.star_happy)
                 thirdStar.setImageResource(R.drawable.star_sad)
                 fourStar.setImageResource(R.drawable.star_sad)
                 fifthStar.setImageResource(R.drawable.star_sad)
             }
-            percentage >= 10 -> {
+            percentageOfCorrectAnswers >= 10 -> {
                 firstStar.setImageResource(R.drawable.star_happy)
                 secondStar.setImageResource(R.drawable.star_sad)
                 thirdStar.setImageResource(R.drawable.star_sad)

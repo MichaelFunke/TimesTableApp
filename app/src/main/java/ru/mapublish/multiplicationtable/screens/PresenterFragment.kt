@@ -2,6 +2,7 @@ package ru.mapublish.multiplicationtable.screens
 
 import android.graphics.Point
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import ru.mapublish.multiplicationtable.R
 import ru.mapublish.multiplicationtable.databinding.FragmentPresenterBinding
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_LEVEL
 import ru.mapublish.multiplicationtable.utils.Actions.MODE
+import ru.mapublish.multiplicationtable.utils.Actions.ONE_SECOND
 import ru.mapublish.multiplicationtable.utils.Actions.PRESENTER_DUR
 import ru.mapublish.multiplicationtable.utils.Actions.TRUEFALSE_MODE
 import ru.mapublish.multiplicationtable.utils.Products
@@ -28,6 +30,8 @@ class PresenterFragment : Fragment() {
     private lateinit var productTvs: List<TextView>
     private lateinit var squaresTvs: MutableList<TextView>
     private lateinit var factorTvs: List<TextView>
+
+    private lateinit var timer: CountDownTimer
 
     //keeps Ids of TextViews and change their colors
     private val tvIds = mutableListOf<String>()
@@ -53,8 +57,8 @@ class PresenterFragment : Fragment() {
                     R.color.purpur
                 )
             )
-            productTvs.forEach {it.background = colorTablePurPur() }
-            factorTvs.forEach {it.background = colorTablePurPur() }
+            productTvs.forEach { it.background = colorTablePurPur() }
+            factorTvs.forEach { it.background = colorTablePurPur() }
         }
 
         //gets the screen size of the phone and adapts TextViews of the table. They should be square, so only the width of the screen is used
@@ -75,6 +79,7 @@ class PresenterFragment : Fragment() {
         //colors factor rows & columns views in white
         colorFactorViews()
 
+        launchTimer()
         binding.timerView.start(PRESENTER_DUR)
 
         binding.skipBtn.setOnClickListener {
@@ -82,6 +87,24 @@ class PresenterFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun launchTimer() {
+       timer = object : CountDownTimer(PRESENTER_DUR, ONE_SECOND) {
+
+            override fun onFinish() {
+                findNavController().navigate(PresenterFragmentDirections.actionPresenterFragmentToGameFragment())
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+            }
+
+        }.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        timer.cancel()
     }
 
     private fun adjustTableSizeToScreenSize() {

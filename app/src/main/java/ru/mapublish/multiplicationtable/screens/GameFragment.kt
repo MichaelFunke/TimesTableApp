@@ -56,16 +56,13 @@ class GameFragment : Fragment() {
             R.layout.fragment_game, container, false
         )
 
-//   TODO delete
-//        writeToShPrefs(requireContext(), CURRENT_LEVEL, 1)
-
         //retrieves the level and the mode from Shared Prefs
         level = readFromShPrefs(requireContext(), CURRENT_LEVEL)
         speed = readFromShPrefs(requireContext(), CURRENT_SPEED)
         mode = readFromShPrefs(requireContext(), MODE)
 
         // hides controllers depending on the chosen mode
-        if (mode == -1) {
+        if (mode == STANDARD_MODE) {
             binding.standardModeControllers.visibility = View.VISIBLE
             binding.trueFalseModeControllers.visibility = View.GONE
         } else {
@@ -172,14 +169,14 @@ class GameFragment : Fragment() {
 
     //starts the animation of timerView depending on the chosen mode
     private fun startTimer() {
-        if (mode == -1) binding.timerView.start(viewModel.countDownTime)
+        if (mode == STANDARD_MODE) binding.timerView.start(viewModel.countDownTime)
         else binding.timerViewTrueFalseMode.start(viewModel.countDownTime)
 
     }
 
     //stops the animation of timerView depending on the chosen mode
     private fun stopTimer() {
-        if (mode == -1) binding.timerView.stop()
+        if (mode == STANDARD_MODE) binding.timerView.stop()
         else binding.timerViewTrueFalseMode.stop()
     }
 
@@ -222,15 +219,11 @@ class GameFragment : Fragment() {
         productTvs.forEach {
             it.layoutParams.width = width / 11
             it.layoutParams.height = width / 11
-            //changes the text size to fit the TextView
-//            it.textSize = it.layoutParams.width.toFloat() / 3.5.toFloat()
         }
 
         factorTvs.forEach {
             it.layoutParams.width = width / 11
             it.layoutParams.height = width / 11
-            //changes the text size to fit the TextView
-//            it.textSize = it.layoutParams.width.toFloat() / 3.5.toFloat()
         }
 
         keyboardButtons.forEach {

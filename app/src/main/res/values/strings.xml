@@ -11,5 +11,5 @@
     <string name="repeat">Repeat</string>
     <string name="previous_games">Continue games:</string>
     <string name="delete_img">delete img</string>
-    <string name="get4stars">Get at least 4 stars to go to the next level!</string>
+    <string name="get4stars">Get at least 4 stars to move on to \n the next level!</string>
 </resources>

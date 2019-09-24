@@ -22,6 +22,7 @@ import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_SPEED
 import ru.mapublish.multiplicationtable.utils.makePercentage
 import ru.mapublish.multiplicationtable.utils.readFromShPrefs
 import ru.mapublish.multiplicationtable.utils.writeToShPrefs
+import kotlin.text.Typography.quote
 
 class GoNextLevelFragment : DialogFragment() {
 
@@ -52,7 +53,7 @@ class GoNextLevelFragment : DialogFragment() {
         binding.lifecycleOwner = this
 
         val args = GoNextLevelFragmentArgs.fromBundle(arguments!!)
-        val percentageOfIncorrectAnswers = makePercentage(currentLevel, args.incorrectAnswers)
+        val percentageOfCorrectAnswers = makePercentage(currentLevel, args.incorrectAnswers)
 
 
         if (mode == Actions.TRUEFALSE_MODE) binding.ll.setBackgroundColor(resources.getColor(R.color.purpur))
@@ -64,7 +65,7 @@ class GoNextLevelFragment : DialogFragment() {
             binding.ivNextRound.setImageResource(R.drawable.speed_2x_selector)
         }
         //if the level is 8 and speed is x2, the speed gets the value of x4 for the next 8 levels
-        else if (currentLevel == 8 && currentSpeed == 2) {
+        else if (currentLevel == 16 && currentSpeed == 2) {
             writeToShPrefs(requireContext(), TOTAL_SPEED, 4)
             binding.ivNextRound.setImageResource(R.drawable.speed_4x_selector)
         }
@@ -72,12 +73,11 @@ class GoNextLevelFragment : DialogFragment() {
 
         val handler = Handler()
         handler.postDelayed({
-            binding.starsView.launchStarsAnimation(percentageOfIncorrectAnswers)
+            binding.starsView.launchStarsAnimation(percentageOfCorrectAnswers)
         }, 150)
 
-        //if percentageOfIncorrectAnswers is too high the player cannot go to the next level and should repeat the level again
-        if (percentageOfIncorrectAnswers <= 55) {
-            //manage UI
+        //if percentageOfCorrectAnswers is too low the player cannot go to the next level and should repeat the level again
+        if (percentageOfCorrectAnswers < 75) {
             binding.ivNextRound.isEnabled = false
             binding.reviewTv.text = getString(R.string.get4stars)
             binding.nextRoundTv.setTextColor(resources.getColor(R.color.semi_white))
@@ -85,19 +85,24 @@ class GoNextLevelFragment : DialogFragment() {
             binding.ivPlayAgain.isEnabled = false
             binding.repeatTv.setTextColor(resources.getColor(R.color.semi_white))
 
-            //when the level is done successful the totalLevel increments by 1. If player repeats one of the levels he managed earlier only currentLevel increments.
-            if (totalLevel > currentLevel) {
-                writeToShPrefs(requireContext(), CURRENT_LEVEL, currentLevel.plus(1))
+            //the last level is 24
+            if (currentLevel <= 24) {
+                //when the level is done successful the totalLevel increments by 1. If player repeats one of the levels he managed earlier only currentLevel increments.
+                if (totalLevel > currentLevel) {
+                    writeToShPrefs(requireContext(), CURRENT_LEVEL, currentLevel.plus(1))
+                } else {
+                    writeToShPrefs(requireContext(), TOTAL_LEVEL, totalLevel.plus(1))
+                    writeToShPrefs(requireContext(), CURRENT_LEVEL, currentLevel.plus(1))
+                }
             } else {
-                writeToShPrefs(requireContext(), TOTAL_LEVEL, totalLevel.plus(1))
-                writeToShPrefs(requireContext(), CURRENT_LEVEL, currentLevel.plus(1))
-            }
-        }
+                binding.ivNextRound.visibility = View.GONE
+                binding.nextRoundTv.visibility = View.GONE
 
-        //the last level is 24
-        if (currentLevel == 24) {
-            binding.ivNextRound.isEnabled = false
-            binding.nextRoundTv.setTextColor(resources.getColor(R.color.semi_white))
+                binding.ivPlayAgain.visibility = View.GONE
+                binding.repeatTv.visibility = View.GONE
+            }
+
+
         }
 
 

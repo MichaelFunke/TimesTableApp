@@ -53,16 +53,16 @@ class Quotes {
         )
 
         private val q13 = Pair(
-            "\"It is not enough to gave a good mind. The main thing is to use it well.\"",
+            "\"It is not enough to have a good mind. The main thing is to use it well.\"",
             "Rene Descartes"
         )
 
         private val q14 = Pair(
-            "\"Pure mathematics is, in its way, the poetry of logical ideas.\"", "Albert Einstein"
+            "\"Pure mathematics is, in it's way, the poetry of logical ideas.\"", "Albert Einstein"
         )
 
         private val q15 = Pair(
-            "\"The only way to da mathematics is to do mathematics.\"", "Paul Halmos"
+            "\"The only way to do mathematics is to do mathematics.\"", "Paul Halmos"
         )
 
         private val q16 = Pair(

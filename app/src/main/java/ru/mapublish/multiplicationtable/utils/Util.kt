@@ -31,7 +31,7 @@ fun writeToShPrefs(context: Context, key: String, value: Int) {
 
 fun readFromShPrefs(context: Context, key: String): Int {
     val sharedPrefs = context.getSharedPreferences(Actions.PREFS, Context.MODE_PRIVATE)
-    return sharedPrefs.getInt(key, -1)
+    return sharedPrefs.getInt(key, 1)
 }
 
 
@@ -47,14 +47,13 @@ fun makePercentage(level: Int, incorrectAnswers: Int): Float {
         7, 15, 23 -> 64
         else -> 81
     }
-    Log.i("mytag", "incorrectAnswers are $incorrectAnswers, level is $level, answers are $answers")
 
     //returns the percentage of incorrect answers
     return when (incorrectAnswers) {
         0 -> 100f
         //when all answers were wrong
         answers -> 0f
-        //computes the percentage on incorrect answers
+        //computes the percentage of correct answers
         else -> 100 - ((incorrectAnswers.toFloat() / answers.toFloat()) * 100f)
     }
 }

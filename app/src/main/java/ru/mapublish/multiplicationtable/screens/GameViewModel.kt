@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import ru.mapublish.multiplicationtable.utils.OnKeyClick
 import ru.mapublish.multiplicationtable.utils.Actions
 import ru.mapublish.multiplicationtable.utils.Actions.GO_NEXT_STAGE
+import ru.mapublish.multiplicationtable.utils.Actions.ONE_SECOND
 import ru.mapublish.multiplicationtable.utils.Actions.SPEEDx1
 import ru.mapublish.multiplicationtable.utils.Actions.SPEEDx2
 import ru.mapublish.multiplicationtable.utils.Actions.SPEEDx4
@@ -114,11 +115,6 @@ class GameViewModel(level: Int, speed: Int, private val mode: Int) : ViewModel()
         }
     }
 
-    companion object {
-        // Countdown time interval
-        private const val ONE_SECOND = 1000L
-    }
-
     private fun nextQuestion() {
         if (listOfBoxIdsAndProducts.isEmpty()) {
             _goNextStageFlag.value = GO_NEXT_STAGE
@@ -211,6 +207,8 @@ class GameViewModel(level: Int, speed: Int, private val mode: Int) : ViewModel()
         // change values to call onWrongAnswer() and showQuestionMark() in GameFragment
         _isAnswerCorrect.value = false
         _tvId.value = "zero"
+
+        _numberOfIncorrectAnswers.value = _numberOfIncorrectAnswers.value!! + 1
 
         nextQuestion()
         textObservable.set("")
