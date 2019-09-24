@@ -2,6 +2,7 @@ package ru.mapublish.multiplicationtable.screens
 
 import android.graphics.Point
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,10 @@ import androidx.navigation.fragment.findNavController
 import ru.mapublish.multiplicationtable.R
 import ru.mapublish.multiplicationtable.databinding.FragmentPresenterBinding
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_LEVEL
+import ru.mapublish.multiplicationtable.utils.Actions.MODE
+import ru.mapublish.multiplicationtable.utils.Actions.ONE_SECOND
 import ru.mapublish.multiplicationtable.utils.Actions.PRESENTER_DUR
+import ru.mapublish.multiplicationtable.utils.Actions.TRUEFALSE_MODE
 import ru.mapublish.multiplicationtable.utils.Products
 import ru.mapublish.multiplicationtable.utils.readFromShPrefs
 
@@ -27,20 +31,35 @@ class PresenterFragment : Fragment() {
     private lateinit var squaresTvs: MutableList<TextView>
     private lateinit var factorTvs: List<TextView>
 
+    private lateinit var timer: CountDownTimer
+
     //keeps Ids of TextViews and change their colors
     private val tvIds = mutableListOf<String>()
 
     private var level = 1
+    private var mode = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_presenter, container, false)
-        // gets the current level
+
         level = readFromShPrefs(requireContext(), CURRENT_LEVEL)
+        mode = readFromShPrefs(requireContext(), MODE)
+
 
         //arrays with views are filled
         initArrays()
         //gets ids of views that are needed to be shown for the level
         getTvsIds()
+
+        if (mode == TRUEFALSE_MODE) {
+            binding.presenterParentView.setBackgroundColor(
+                resources.getColor(
+                    R.color.purpur
+                )
+            )
+            productTvs.forEach { it.background = colorTablePurPur() }
+            factorTvs.forEach { it.background = colorTablePurPur() }
+        }
 
         //gets the screen size of the phone and adapts TextViews of the table. They should be square, so only the width of the screen is used
         adjustTableSizeToScreenSize()
@@ -60,6 +79,7 @@ class PresenterFragment : Fragment() {
         //colors factor rows & columns views in white
         colorFactorViews()
 
+        launchTimer()
         binding.timerView.start(PRESENTER_DUR)
 
         binding.skipBtn.setOnClickListener {
@@ -67,6 +87,24 @@ class PresenterFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun launchTimer() {
+       timer = object : CountDownTimer(PRESENTER_DUR, ONE_SECOND) {
+
+            override fun onFinish() {
+                findNavController().navigate(PresenterFragmentDirections.actionPresenterFragmentToGameFragment())
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+            }
+
+        }.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        timer.cancel()
     }
 
     private fun adjustTableSizeToScreenSize() {
@@ -81,15 +119,11 @@ class PresenterFragment : Fragment() {
             productTvs.forEach {
                 it.layoutParams.width = width / 11
                 it.layoutParams.height = width / 11
-                //changes the text size to fit the TextView
-                it.textSize = it.layoutParams.width.toFloat() / 3
             }
 
             factorTvs.forEach {
                 it.layoutParams.width = width / 11
                 it.layoutParams.height = width / 11
-                //changes the text size to fit the TextView
-                it.textSize = it.layoutParams.width.toFloat() / 3
             }
 
             //adjusting the size of the sendAnswer btn
@@ -133,7 +167,11 @@ class PresenterFragment : Fragment() {
     }
 
     private fun colorText() {
-        productTvs.forEach { it.setTextColor(colorTextBluish()) }
+        if (mode == TRUEFALSE_MODE) {
+            productTvs.forEach { it.setTextColor(colorTextTablePurPur()) }
+        } else {
+            productTvs.forEach { it.setTextColor(colorTextBluish()) }
+        }
     }
 
     private fun colorTable() {
@@ -166,6 +204,20 @@ class PresenterFragment : Fragment() {
         )
     }
 
+    private val colorTablePurPur = {
+        ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.tv_rounded_corners_purpur
+        )
+    }
+
+    private val colorTextTablePurPur = {
+        ContextCompat.getColor(
+            requireContext(),
+            R.color.purpur
+        )
+    }
+
     private val colorBackgroundYellow = {
         ContextCompat.getDrawable(
             requireContext(),
@@ -190,7 +242,6 @@ class PresenterFragment : Fragment() {
         // gets the first value from each element in the list, which is an id of a box
         tvs.mapTo(tvIds) { it.first }
     }
-
 
 
     private fun makePerfectSquaresAndFactorsArraysToLevel() {
@@ -245,16 +296,6 @@ class PresenterFragment : Fragment() {
                 squaresTvs.remove(binding.rVII49)
                 squaresTvs.remove(binding.rVIII64)
             }
-//            8, 16, 24 -> {
-//                squaresTvs.remove(binding.rI1)
-//                squaresTvs.remove(binding.rII4)
-//                squaresTvs.remove(binding.rIII9)
-//                squaresTvs.remove(binding.rIV16)
-//                squaresTvs.remove(binding.rV25)
-//                squaresTvs.remove(binding.rVI36)
-//                squaresTvs.remove(binding.rVII49)
-//                squaresTvs.remove(binding.rVII56)
-//            }
             else -> squaresTvs.removeAll { true }
         }
 

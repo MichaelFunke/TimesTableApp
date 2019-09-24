@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="boxDimen">0dp</dimen>
-    <dimen name="boxTextSize">22sp</dimen>
+    <dimen name="boxDimen">24dp</dimen>
+    <dimen name="boxTextSize">18sp</dimen>
     <dimen name="star_size">50dp</dimen>
     <dimen name="repeat_nextRound_size">50dp</dimen>
     <dimen name="go_next_lvl_text_size">16sp</dimen>
     <dimen name="level_box">40dp</dimen>
     <dimen name="level_box_text_size">16sp</dimen>
+    <dimen name="trueFalse">12sp</dimen>
 </resources>

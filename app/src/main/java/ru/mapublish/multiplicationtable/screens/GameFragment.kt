@@ -23,7 +23,7 @@ import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_LEVEL
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_SPEED
 import ru.mapublish.multiplicationtable.utils.Actions.MODE
 import ru.mapublish.multiplicationtable.utils.Actions.STANDARD_MODE
-import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_SPEED
+import ru.mapublish.multiplicationtable.utils.Actions.TRUEFALSE_MODE
 
 /**
  * Fragment where the game is played
@@ -55,16 +55,13 @@ class GameFragment : Fragment() {
             R.layout.fragment_game, container, false
         )
 
-//   TODO delete
-//        writeToShPrefs(requireContext(), CURRENT_LEVEL, 1)
-
         //retrieves the level and the mode from Shared Prefs
         level = readFromShPrefs(requireContext(), CURRENT_LEVEL)
         speed = readFromShPrefs(requireContext(), CURRENT_SPEED)
         mode = readFromShPrefs(requireContext(), MODE)
 
         // hides controllers depending on the chosen mode
-        if (mode == -1) {
+        if (mode == STANDARD_MODE) {
             binding.standardModeControllers.visibility = View.VISIBLE
             binding.trueFalseModeControllers.visibility = View.GONE
         } else {
@@ -128,11 +125,29 @@ class GameFragment : Fragment() {
         viewModel.resetList(level)
 
         initArrays()
+
+        if (mode == TRUEFALSE_MODE) {
+            binding.trueBtn.setTextColor(resources.getColor(R.color.purpur))
+            binding.falseBtn.setTextColor(resources.getColor(R.color.purpur))
+
+            binding.gameParentView.background = colorTablePurPur()
+            productTvs.forEach {
+                it.background = colorTablePurPur()
+                it.setTextColor(colorTextTablePurPur())
+            }
+            factorTvs.forEach {
+                it.background = colorTablePurPur()
+                it.setTextColor(colorTextTablePurPur())
+            }
+        }
+
         adjustTableSizeToScreenSize()
         fillArraysToLevel()
 
+
         getTvsIds()
         colorPerfectSquares()
+
 
         // starts the timer animation
         startTimer()
@@ -153,14 +168,14 @@ class GameFragment : Fragment() {
 
     //starts the animation of timerView depending on the chosen mode
     private fun startTimer() {
-        if (mode == -1) binding.timerView.start(viewModel.countDownTime)
+        if (mode == STANDARD_MODE) binding.timerView.start(viewModel.countDownTime)
         else binding.timerViewTrueFalseMode.start(viewModel.countDownTime)
 
     }
 
     //stops the animation of timerView depending on the chosen mode
     private fun stopTimer() {
-        if (mode == -1) binding.timerView.stop()
+        if (mode == STANDARD_MODE) binding.timerView.stop()
         else binding.timerViewTrueFalseMode.stop()
     }
 
@@ -203,15 +218,11 @@ class GameFragment : Fragment() {
         productTvs.forEach {
             it.layoutParams.width = width / 11
             it.layoutParams.height = width / 11
-            //changes the text size to fit the TextView
-            it.textSize = it.layoutParams.width.toFloat() / 3
         }
 
         factorTvs.forEach {
             it.layoutParams.width = width / 11
             it.layoutParams.height = width / 11
-            //changes the text size to fit the TextView
-            it.textSize = it.layoutParams.width.toFloat() / 3
         }
 
         keyboardButtons.forEach {
@@ -238,6 +249,8 @@ class GameFragment : Fragment() {
         //adjusting the size of the timerView for TrueFalse mode btn
         binding.timerViewTrueFalseMode.layoutParams.width = width / 9
         binding.timerViewTrueFalseMode.layoutParams.height = width / 9
+
+
     }
 
     /**
@@ -536,15 +549,27 @@ class GameFragment : Fragment() {
             for (element in tvIds) {
                 if (item.toString().contains(element, true)) {
                     item.background = colorBackgroundWhite()
-                    item.setTextColor(colorTextBlue())
+
+                    if (mode == TRUEFALSE_MODE) {
+                        item.setTextColor(colorTextTablePurPur())
+                    } else {
+                        item.setTextColor(colorTextBlue())
+                    }
                 }
             }
         }
 
         //iterates through the list of all factor tvs and changes their colors
-        factorTvs.forEach {
-            it.background = colorBackgroundBlue()
-            it.setTextColor(colorTextWhite())
+        if (mode == TRUEFALSE_MODE) {
+            factorTvs.forEach {
+                it.background = colorTablePurPur()
+                it.setTextColor(colorTextWhite())
+            }
+        } else {
+            factorTvs.forEach {
+                it.background = colorBackgroundBlue()
+                it.setTextColor(colorTextWhite())
+            }
         }
     }
 
@@ -663,7 +688,11 @@ class GameFragment : Fragment() {
             for (element in factorTvs) {
                 if (element.toString().contains(item, true)) {
                     element.background = colorBackgroundYellowLight()
-                    element.setTextColor(colorTextBlue())
+                    if (mode == TRUEFALSE_MODE) {
+                        element.setTextColor(colorTextTablePurPur())
+                    } else {
+                        element.setTextColor(colorTextBlue())
+                    }
                 }
             }
         }
@@ -715,6 +744,20 @@ class GameFragment : Fragment() {
         ContextCompat.getDrawable(
             requireContext(),
             R.drawable.tv_rounded_corners_yellow
+        )
+    }
+
+    private val colorTablePurPur = {
+        ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.tv_rounded_corners_purpur
+        )
+    }
+
+    private val colorTextTablePurPur = {
+        ContextCompat.getColor(
+            requireContext(),
+            R.color.purpur
         )
     }
 }

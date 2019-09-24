@@ -5,6 +5,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/startParentView"
             android:background="@color/background_bluish"
             android:orientation="vertical"
             android:weightSum="2">
@@ -38,7 +39,7 @@
                         android:gravity="center"
                         android:text="START"
                         android:textColor="@color/background_bluish"
-                        android:textSize="44sp"
+                        android:textSize="38sp"
                         android:textStyle="bold" />
 
                 <TextView
@@ -50,7 +51,7 @@
                         android:gravity="center"
                         android:text="LEARNING"
                         android:textColor="@color/background_bluish"
-                        android:textSize="28sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
             </LinearLayout>
 
@@ -61,7 +62,7 @@
                 android:id="@+id/level_selector_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="42dp"
+                android:paddingBottom="80dp"
                 android:layout_weight="0.8" />
 
 

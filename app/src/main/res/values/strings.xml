@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Multiplication Table</string>
+    <string name="app_name">Times Table</string>
     <string name="want_to_quit">Quit the game?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -11,5 +11,5 @@
     <string name="repeat">Repeat</string>
     <string name="previous_games">Continue games:</string>
     <string name="delete_img">delete img</string>
-    <string name="get4stars">Get at least 4 stars to go to the next level!</string>
+    <string name="get4stars">Get at least 4 stars to move on to \n the next level!</string>
 </resources>
