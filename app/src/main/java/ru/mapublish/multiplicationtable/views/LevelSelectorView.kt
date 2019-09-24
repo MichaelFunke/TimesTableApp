@@ -99,21 +99,6 @@ class LevelSelectorView(context: Context, attrs: AttributeSet) : LinearLayout(co
             modeStandardTv.isSelected = true
         }
 
-
-        //when pressed game starts in standard mode
-//        modeStandardTv.setOnClickListener {
-//
-//            writeToShPrefs(context, MODE, STANDARD_MODE)
-//            changeModeButtonsColors(it)
-//        }
-
-        //when pressed  game starts in true/false mode
-//        modeTrueFalseTv.setOnClickListener {
-//            writeToShPrefs(context, MODE, TRUEFALSE_MODE)
-//            changeModeButtonsColors(it)
-//        }
-
-
         lvl1Btn.setOnClickListener {
             manageLevelButtons(
                 when (currentSpeed) {

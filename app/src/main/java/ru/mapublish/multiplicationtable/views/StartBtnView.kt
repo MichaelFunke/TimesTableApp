@@ -8,12 +8,8 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
-import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import ru.mapublish.multiplicationtable.R
-import ru.mapublish.multiplicationtable.screens.StartFragmentDirections
 import ru.mapublish.multiplicationtable.utils.Actions.DOWN_KEY
 import ru.mapublish.multiplicationtable.utils.Actions.UP_KEY
 

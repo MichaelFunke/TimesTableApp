@@ -630,7 +630,7 @@
                             android:layout_gravity="start"
                             android:layout_marginStart="16dp"
                             android:onClick="@{()->viewModel.onCheatBtn()}"
-                            app:srcCompat="@drawable/cheat_btn_0" />
+                            app:srcCompat="@drawable/cheat_zero" />
                 </LinearLayout>
 
                 <LinearLayout

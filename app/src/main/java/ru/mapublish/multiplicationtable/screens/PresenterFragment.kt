@@ -119,15 +119,11 @@ class PresenterFragment : Fragment() {
             productTvs.forEach {
                 it.layoutParams.width = width / 11
                 it.layoutParams.height = width / 11
-                //changes the text size to fit the TextView
-//                it.textSize = it.layoutParams.width.toFloat() / 3
             }
 
             factorTvs.forEach {
                 it.layoutParams.width = width / 11
                 it.layoutParams.height = width / 11
-                //changes the text size to fit the TextView
-//                it.textSize = it.layoutParams.width.toFloat() / 3
             }
 
             //adjusting the size of the sendAnswer btn
@@ -300,16 +296,6 @@ class PresenterFragment : Fragment() {
                 squaresTvs.remove(binding.rVII49)
                 squaresTvs.remove(binding.rVIII64)
             }
-//            8, 16, 24 -> {
-//                squaresTvs.remove(binding.rI1)
-//                squaresTvs.remove(binding.rII4)
-//                squaresTvs.remove(binding.rIII9)
-//                squaresTvs.remove(binding.rIV16)
-//                squaresTvs.remove(binding.rV25)
-//                squaresTvs.remove(binding.rVI36)
-//                squaresTvs.remove(binding.rVII49)
-//                squaresTvs.remove(binding.rVII56)
-//            }
             else -> squaresTvs.removeAll { true }
         }
 

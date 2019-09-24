@@ -22,7 +22,6 @@ import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_SPEED
 import ru.mapublish.multiplicationtable.utils.makePercentage
 import ru.mapublish.multiplicationtable.utils.readFromShPrefs
 import ru.mapublish.multiplicationtable.utils.writeToShPrefs
-import kotlin.text.Typography.quote
 
 class GoNextLevelFragment : DialogFragment() {
 

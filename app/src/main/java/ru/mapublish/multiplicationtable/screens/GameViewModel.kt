@@ -125,10 +125,6 @@ class GameViewModel(level: Int, speed: Int, private val mode: Int) : ViewModel()
             if (mode == TRUEFALSE_MODE) {
                 tempProductValue = _product.value
                 _product.value = randomize(listOfBoxIdsAndProducts[0].second)
-                Log.i(
-                    "truefalse else",
-                    "_product.value is ${_product.value}, tempProductValue is $tempProductValue"
-                )
             }
 
             //this field should stay after the _product because it's an observable and causes UI changes

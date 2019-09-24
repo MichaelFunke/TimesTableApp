@@ -2,8 +2,6 @@ package ru.mapublish.multiplicationtable.utils
 
 class Products {
     companion object {
-
-
         //STAGE ONE
         private val rI1 = Pair("rI_1", 1)
         private val rI2 = Pair("rI_2", 2)

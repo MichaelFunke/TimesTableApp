@@ -23,7 +23,6 @@ import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_LEVEL
 import ru.mapublish.multiplicationtable.utils.Actions.CURRENT_SPEED
 import ru.mapublish.multiplicationtable.utils.Actions.MODE
 import ru.mapublish.multiplicationtable.utils.Actions.STANDARD_MODE
-import ru.mapublish.multiplicationtable.utils.Actions.TOTAL_SPEED
 import ru.mapublish.multiplicationtable.utils.Actions.TRUEFALSE_MODE
 
 /**
